@@ -5,9 +5,6 @@ import os
 EASY_LEVEL_TURNS=10
 HARD_LEVEL_TURNS=5
 
-def clear_console():
-    os.system('clear')
-
 def check_answer(guess_num,real_num):
     if guess_num>real_num:
         print("Too high.")
@@ -25,31 +22,32 @@ def set_difficulty():
     elif level=='hard':
         return HARD_LEVEL_TURNS
 
-print(logo)
-print("Welcome to the Number Guessing game!")
-print("I am thinking of a number between 1 and 100.")
+def game():
+    print(logo)
+    print("Welcome to the Number Guessing game!")
+    print("I am thinking of a number between 1 and 100.")
 
-restart=True
-while restart:
-    real=random.randint(1,100)
+    restart=True
+    while restart:
+        real=random.randint(1,100)
 
-    no_attempts=set_difficulty()
+        no_attempts=set_difficulty()
 
-    i=1
-    while i<=no_attempts:
-        guess=int(input("Make a guess:"))     
-        check_answer(guess,real)   
-        attempts_remaining=no_attempts-i
-        if attempts_remaining==0:
-            print(f"You've run out of guesses, you lose. \nThe correct number was {real}.")
-            break
-        else:
-            i+=1
-        print(f"You have {attempts_remaining} remaining attempts to guess the number.")
+        i=1
+        while i<=no_attempts:
+            guess=int(input("Make a guess:"))     
+            check_answer(guess,real)   
+            attempts_remaining=no_attempts-i
+            if attempts_remaining==0:
+                print(f"You've run out of guesses, you lose. \nThe correct number was {real}.")
+                break
+            else:
+                i+=1
+            print(f"You have {attempts_remaining} remaining attempts to guess the number.")
+        
+        question=input("This replica was exited, run again? Type 'yes' or 'no': ").lower()
+        if question=='no':
+            restart=False
+    print("Goodbye, thanks for playing!")
     
-    question=input("This replica was exited, run again? Type 'yes' or 'no': ").lower()
-    if question=='no':
-        clear_console()
-        restart=False
-print("Goodbye, thanks for playing!")
-    
+game()
