@@ -1,3 +1,5 @@
+from replit import clear
+from art import logo
 
 num1=int(input("What's the first number?: "))
 print("+ \n-\n* \n/")
