@@ -1,0 +1,39 @@
+from game_data import data
+from art import logo,vs
+from random import randint
+# from replit import clear
+
+def check_answer(numA,numB):
+    print(f"Compare A: {data[numA]['name']}, a {data[numA]['description']} from {data[numA]['country']}.") 
+    print(vs)
+    print(f"Against B: {data[numB]['name']}, a {data[numB]['description']} from {data[numB]['country']}.")
+
+    countsA=data[numA]['follower_count'] 
+    countsB=data[numB]['follower_count']
+
+    if countsA>countsB:
+        return 'a'
+    else:
+        return 'b'
+
+def game():
+    print(logo)
+    numA=randint(0,len(data)-1)
+    stop_game=False
+    correct=0
+    while not stop_game:
+        
+        numB=randint(0,len(data)-1)
+        
+        real=check_answer(numA,numB)          
+        guess=input("Who has more followers? Type 'A' or 'B': ").lower()
+        # clear()
+        print(logo)
+        if guess==real:
+            numA=numB        
+            correct+=1
+            print(f"You're right. Current score: {correct}")
+        else:
+            print(f"Sorry, that\'s wrong. Final score: {correct}")
+            stop_game=True
+game()
