@@ -1,2 +1,2 @@
 # Python-
-Python projects for learning purpose 
+Python projects for learning purposes
