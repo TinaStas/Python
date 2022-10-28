@@ -1,30 +1,20 @@
 from turtle import Turtle
-import random 
-from random import randint
 
-COLORS = ['red','blue','yellow','green','brown','pink','orange']
-MOVE_DISTANCE = 5
-MOVE_INCREMENT = 5
+STARTING_POSITION = (0,-280)
+MOVE_DISTANCE = 10
 
-class Car:
+class Player(Turtle):
     def __init__(self):
-        self.all_cars = []
-        self.car_speed = MOVE_DISTANCE
-        
-    def create_car(self):
-        # to decrease the number of cars created, let's assume that a car is created if the chance == 1
-        chance = randint(1,6)
-        if chance == 1:
-            new_car = Turtle("square")
-            new_car.shapesize(stretch_len=2,stretch_wid=1)
-            new_car.penup()
-            new_car.goto(300,randint(-260,260))
-            new_car.color(random.choice(COLORS))
-            self.all_cars.append(new_car)
+        super().__init__()
+        self.shape("turtle")
+        self.penup()
+        self.go_to_start()
+        self.setheading(90)
 
-    def move_cars(self):
-        for car in self.all_cars:
-            car.backward(self.car_speed)
+    def move_forward(self):
+        self.forward(MOVE_DISTANCE)
+    
+    def go_to_start(self):
+        self.goto(STARTING_POSITION)
 
-    def increase_speed(self):
-        self.car_speed += MOVE_INCREMENT
+
